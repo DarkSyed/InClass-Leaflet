@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hurricane Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <style>
+      #map {
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+      var map = L.map("map").setView([30, -55], 5);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      var blueDotIcon = L.icon({
+        iconUrl: "blue_dot.png",
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+        popupAnchor: [0, -16],
+      });
+
+      var hurricaneIcon = L.icon({
+        iconUrl: "hurricane_img.png",
+        iconSize: [64, 64],
+        iconAnchor: [32, 32],
+        popupAnchor: [0, -32],
+      });
+
+      var geojson = {
+  "type" : "FeatureCollection",
+  "features" : [{"type":"Feature","id":0,"geometry":{"type":"Point","coordinates":[-55.5,30.300000000000001]},"properties":{"FID":0,"STORMNAME":"INVEST","DTG":2021052000,"YEAR":2021,"MONTH":"05","DAY":20,"HHMM":"0000","MSLP":1015,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":30,"SS":0,"LAT":30.300000000000001,"LON":-55.5}},{"type":"Feature","id":1,"geometry":{"type":"Point","coordinates":[-54.5,31.5]},"properties":{"FID":1,"STORMNAME":"INVEST","DTG":2021052006,"YEAR":2021,"MONTH":"05","DAY":20,"HHMM":"0600","MSLP":1013,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":35,"SS":0,"LAT":31.5,"LON":-54.5}},{"type":"Feature","id":2,"geometry":{"type":"Point","coordinates":[-53,33]},"properties":{"FID":2,"STORMNAME":"INVEST","DTG":2021052012,"YEAR":2021,"MONTH":"05","DAY":20,"HHMM":"1200","MSLP":1012,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":40,"SS":0,"LAT":33,"LON":-53}},{"type":"Feature","id":3,"geometry":{"type":"Point","coordinates":[-53.799999999999997,34.200000000000003]},"properties":{"FID":3,"STORMNAME":"INVEST","DTG":2021052018,"YEAR":2021,"MONTH":"05","DAY":20,"HHMM":"1800","MSLP":1010,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":45,"SS":0,"LAT":34.200000000000003,"LON":-53.799999999999997}},{"type":"Feature","id":4,"geometry":{"type":"Point","coordinates":[-55,34.799999999999997]},"properties":{"FID":4,"STORMNAME":"INVEST","DTG":2021052100,"YEAR":2021,"MONTH":"05","DAY":21,"HHMM":"0000","MSLP":1008,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":50,"SS":0,"LAT":34.799999999999997,"LON":-55}},{"type":"Feature","id":5,"geometry":{"type":"Point","coordinates":[-57,35.5]},"properties":{"FID":5,"STORMNAME":"INVEST","DTG":2021052106,"YEAR":2021,"MONTH":"05","DAY":21,"HHMM":"0600","MSLP":1006,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":50,"SS":0,"LAT":35.5,"LON":-57}},{"type":"Feature","id":6,"geometry":{"type":"Point","coordinates":[-59.299999999999997,35.700000000000003]},"properties":{"FID":6,"STORMNAME":"INVEST","DTG":2021052112,"YEAR":2021,"MONTH":"05","DAY":21,"HHMM":"1200","MSLP":1005,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":45,"SS":0,"LAT":35.700000000000003,"LON":-59.299999999999997}},{"type":"Feature","id":7,"geometry":{"type":"Point","coordinates":[-61.100000000000001,35]},"properties":{"FID":7,"STORMNAME":"INVEST","DTG":2021052118,"YEAR":2021,"MONTH":"05","DAY":21,"HHMM":"1800","MSLP":1005,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":45,"SS":0,"LAT":35,"LON":-61.100000000000001}},{"type":"Feature","id":8,"geometry":{"type":"Point","coordinates":[-61.799999999999997,34.5]},"properties":{"FID":8,"STORMNAME":"INVEST","DTG":2021052200,"YEAR":2021,"MONTH":"05","DAY":22,"HHMM":"0000","MSLP":1006,"BASIN":"al","STORMNUM":1,"STORMTYPE":"EX","INTENSITY":40,"SS":0,"LAT":34.5,"LON":-61.799999999999997}},{"type":"Feature","id":9,"geometry":{"type":"Point","coordinates":[-62.100000000000001,34.200000000000003]},"properties":{"FID":9,"STORMNAME":"ANA","DTG":2021052206,"YEAR":2021,"MONTH":"05","DAY":22,"HHMM":"0600","MSLP":1006,"BASIN":"al","STORMNUM":1,"STORMTYPE":"SS","INTENSITY":35,"SS":0,"LAT":34.200000000000003,"LON":-62.100000000000001}},{"type":"Feature","id":10,"geometry":{"type":"Point","coordinates":[-62.700000000000003,34.299999999999997]},"properties":{"FID":10,"STORMNAME":"ANA","DTG":2021052212,"YEAR":2021,"MONTH":"05","DAY":22,"HHMM":"1200","MSLP":1006,"BASIN":"al","STORMNUM":1,"STORMTYPE":"SS","INTENSITY":35,"SS":0,"LAT":34.299999999999997,"LON":-62.700000000000003}},{"type":"Feature","id":11,"geometry":{"type":"Point","coordinates":[-62.399999999999999,34.200000000000003]},"properties":{"FID":11,"STORMNAME":"ANA","DTG":2021052218,"YEAR":2021,"MONTH":"05","DAY":22,"HHMM":"1800","MSLP":1006,"BASIN":"al","STORMNUM":1,"STORMTYPE":"SS","INTENSITY":35,"SS":0,"LAT":34.200000000000003,"LON":-62.399999999999999}},{"type":"Feature","id":12,"geometry":{"type":"Point","coordinates":[-61.799999999999997,34.700000000000003]},"properties":{"FID":12,"STORMNAME":"ANA","DTG":2021052300,"YEAR":2021,"MONTH":"05","DAY":23,"HHMM":"0000","MSLP":1005,"BASIN":"al","STORMNUM":1,"STORMTYPE":"TS","INTENSITY":40,"SS":0,"LAT":34.700000000000003,"LON":-61.799999999999997}},{"type":"Feature","id":13,"geometry":{"type":"Point","coordinates":[-61.100000000000001,35.399999999999999]},"properties":{"FID":13,"STORMNAME":"ANA","DTG":2021052306,"YEAR":2021,"MONTH":"05","DAY":23,"HHMM":"0600","MSLP":1004,"BASIN":"al","STORMNUM":1,"STORMTYPE":"TS","INTENSITY":40,"SS":0,"LAT":35.399999999999999,"LON":-61.100000000000001}},{"type":"Feature","id":14,"geometry":{"type":"Point","coordinates":[-60.299999999999997,36.100000000000001]},"properties":{"FID":14,"STORMNAME":"ANA","DTG":2021052312,"YEAR":2021,"MONTH":"05","DAY":23,"HHMM":"1200","MSLP":1005,"BASIN":"al","STORMNUM":1,"STORMTYPE":"TS","INTENSITY":35,"SS":0,"LAT":36.100000000000001,"LON":-60.299999999999997}},{"type":"Feature","id":15,"geometry":{"type":"Point","coordinates":[-58.700000000000003,36.799999999999997]},"properties":{"FID":15,"STORMNAME":"ANA","DTG":2021052318,"YEAR":2021,"MONTH":"05","DAY":23,"HHMM":"1800","MSLP":1006,"BASIN":"al","STORMNUM":1,"STORMTYPE":"LO","INTENSITY":35,"SS":0,"LAT":36.799999999999997,"LON":-58.700000000000003}},{"type":"Feature","id":16,"geometry":{"type":"Point","coordinates":[-56.700000000000003,37.600000000000001]},"properties":{"FID":16,"STORMNAME":"ANA","DTG":2021052400,"YEAR":2021,"MONTH":"05","DAY":24,"HHMM":"0000","MSLP":1007,"BASIN":"al","STORMNUM":1,"STORMTYPE":"LO","INTENSITY":35,"SS":0,"LAT":37.600000000000001,"LON":-56.700000000000003}}]
+        }
+
+      L.geoJSON(geojson, {
+        pointToLayer: function (feature, latlng) {
+          return L.marker(latlng, { icon: hurricaneIcon });
+        },
+        onEachFeature: function (feature, layer) {
+          var popup =
+            "<b>Storm Name: Ana, https://en.wikipedia.org/wiki/Tropical_Storm_Ana_(2022) </b> " +
+            "<br>" +
+            "<img src='Ana_Img.jpg' alt='Storm Image' width='300' height='300'>";
+          layer.bindPopup(popup);
+        },
+      }).addTo(map);
+
+      var bounds = L.geoJSON(geojson).getBounds();
+      map.fitBounds(bounds);
+    </script>
+  </body>
+</html>
